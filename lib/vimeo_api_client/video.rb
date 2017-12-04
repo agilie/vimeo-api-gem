@@ -18,8 +18,8 @@ module Vimeo
 
     def update_by_pulling(link)
       request("#{@uri}/files", { query: {
-        'type' => 'pull',
-        'link' => link
+        type: 'pull',
+        link: link
       } }, :put)
     end
 
