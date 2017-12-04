@@ -3,11 +3,12 @@ require 'vimeo_api_client/configuration'
 
 # Respources
 require 'vimeo_api_client/user'
+require 'vimeo_api_client/video'
 
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user).freeze
+  RESOURCES = %w(user video).freeze
 
   class << self
     RESOURCES.each do |resource|

@@ -13,6 +13,7 @@ module Vimeo
     ERROR_CODES = {
       400 => BadRequest,
       401 => Unauthorized,
+      403 => NotAllowed,
       404 => NotFound,
       500 => InternalServerError,
       502 => BadGateway,
@@ -41,6 +42,8 @@ module Vimeo
     end
 
     def parse_failed(response)
+      p response
+      p response.code
       error = ERROR_CODES[response.code].new(response)
       raise error, error.message
     end

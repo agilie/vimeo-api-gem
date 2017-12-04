@@ -19,6 +19,10 @@ module Vimeo
   class Unauthorized < Error
   end
 
+  # Raised when Vimeo returns the HTTP status code 403
+  class NotAllowed < Error
+  end
+
   # Raised when Vimeo returns the HTTP status code 404
   class NotFound < Error
   end
