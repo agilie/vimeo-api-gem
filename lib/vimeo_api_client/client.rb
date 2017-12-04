@@ -42,8 +42,6 @@ module Vimeo
     end
 
     def parse_failed(response)
-      p response
-      p response.code
       error = ERROR_CODES[response.code].new(response)
       raise error, error.message
     end

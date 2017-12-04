@@ -6,7 +6,7 @@ module Vimeo
     include Client
 
     def initialize(uri = nil)
-      @uri = uri
+      @uri = safe_uri(uri)
     end
 
     def create_by_pulling(link)
@@ -33,6 +33,12 @@ module Vimeo
 
     def update_timeline_events(options)
       request("#{@uri}/timelineevents", { query: options }, :patch)
+    end
+
+    private
+
+    def safe_uri(uri)
+      uri.to_s.sub(/^\//, '')
     end
 
   end
