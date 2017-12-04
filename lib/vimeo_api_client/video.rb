@@ -10,14 +10,14 @@ module Vimeo
     end
 
     def create_by_pulling(link)
-      request('me/videos', { query: {
+      request('me/videos', { body: {
         type: 'pull',
         link: link
       } }, :post)
     end
 
     def update_by_pulling(link)
-      request("#{@uri}/files", { query: {
+      request("#{@uri}/files", { body: {
         type: 'pull',
         link: link
       } }, :put)
@@ -28,11 +28,11 @@ module Vimeo
     end
 
     def update(options = {})
-      request("#{@uri}", { query: options }, :patch)
+      request("#{@uri}", { body: options }, :patch)
     end
 
     def update_timeline_events(options)
-      request("#{@uri}/timelineevents", { query: options }, :patch)
+      request("#{@uri}/timelineevents", { body: options }, :patch)
     end
 
     private
