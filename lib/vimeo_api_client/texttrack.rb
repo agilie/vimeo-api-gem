@@ -21,6 +21,8 @@ module Vimeo
     # type
     # language
     # name
+    # active
+    # file
     def create(options)
       response = request("/videos/#{@video_id}/texttracks", { body: options }, :post)
       response = upload_file(response.link, options[:file]) if options[:file]
