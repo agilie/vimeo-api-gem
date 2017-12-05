@@ -1,16 +1,24 @@
+# Gem version
 require 'vimeo_api_client/version'
-require 'vimeo_api_client/configuration'
 
-# Respources
+# Configurations
+require 'vimeo_api_client/configuration'
+require 'vimeo_api_client/utils'
+
+# Resources
 require 'vimeo_api_client/user'
 require 'vimeo_api_client/video'
+require 'vimeo_api_client/texttrack'
 
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user video).freeze
+  RESOURCES = %w(user video text_track).freeze
 
   class << self
+
+    include Utils
+
     RESOURCES.each do |resource|
       define_method resource do |resource_id = nil|
         klass_name(resource).new(resource_id)
@@ -20,7 +28,7 @@ module Vimeo
     private
 
     def klass_name(resource)
-      "Vimeo::#{resource.capitalize}".split('::').inject(Object) {|o, c| o.const_get c}
+      "Vimeo::#{snake_to_camel(resource)}".split('::').inject(Object) {|o, c| o.const_get c}
     end
   end
 

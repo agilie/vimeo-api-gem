@@ -26,7 +26,7 @@ module Vimeo
         'Authorization' => "Bearer #{Vimeo.token}"
       }})
 
-      response = HTTParty.send(method, "#{BASE_API_URI}/#{url}", options)
+      response = HTTParty.send(method, "#{BASE_API_URI}#{url}", options)
       if response.success?
         parse_success response
       else

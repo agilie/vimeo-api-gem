@@ -1,12 +1,18 @@
 require 'vimeo_api_client/client'
+require 'vimeo_api_client/has_children'
 
 module Vimeo
   class Video
 
     include Client
+    include HasChildren
+
+    has_many :text_tracks
+
+    attr_reader :id
 
     def initialize(uri = nil)
-      @uri = safe_uri(uri)
+      @id = strip_to_id(uri)
     end
 
     def create_by_pulling(link)
@@ -17,28 +23,28 @@ module Vimeo
     end
 
     def update_by_pulling(link)
-      request("#{@uri}/files", { body: {
+      request("/videos/#{@id}/files", { body: {
         type: 'pull',
         link: link
       } }, :put)
     end
 
     def get
-      request(@uri)
+      request("/videos/#{@id}")
     end
 
     def update(options = {})
-      request("#{@uri}", { body: options }, :patch)
+      request("/videos/#{@id}", { body: options }, :patch)
     end
 
     def update_timeline_events(options)
-      request("#{@uri}/timelineevents", { body: options }, :patch)
+      request("/videos/#{@id}/timelineevents", { body: options }, :patch)
     end
 
     private
 
-    def safe_uri(uri)
-      uri.to_s.sub(/^\//, '')
+    def strip_to_id(uri)
+      uri.to_s[/\d+/] if uri
     end
 
   end

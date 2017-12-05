@@ -8,7 +8,7 @@ module Vimeo
     attr_reader :id
 
     def initialize(id = nil)
-      @id = id.nil? ? 'me' : "users/#{id}"
+      @id = id.nil? ? '/me' : "/users/#{id}"
     end
 
     def get
