@@ -39,6 +39,7 @@ module Vimeo
     private
 
     def parse_success(response)
+      return unless response.body
       response_hash = JSON.parse(response.body)
       ::Hashie::Mash.new(response_hash)
     end
