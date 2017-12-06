@@ -16,7 +16,7 @@ module Vimeo
     end
 
     def create_by_pulling(link)
-      request('me/videos', { body: {
+      request('/me/videos', { body: {
         type: 'pull',
         link: link
       } }, :post)
