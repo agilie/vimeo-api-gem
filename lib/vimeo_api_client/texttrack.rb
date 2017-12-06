@@ -33,5 +33,13 @@ module Vimeo
       HTTParty.put(upload_link, body: file)
     end
 
+    def update(options)
+      request("/videos/#{@video_id}/texttracks/#{@id}", { body: options }, :patch)
+    end
+
+    def delete
+      request("/videos/#{@video_id}/texttracks/#{@id}", {}, :delete)
+    end
+
   end
 end
