@@ -41,6 +41,10 @@ module Vimeo
       request("/videos/#{@id}/timelineevents", { body: options }, :patch)
     end
 
+    def delete
+      request("/videos/#{@id}", {}, :delete)
+    end
+
     private
 
     def strip_to_id(uri)
