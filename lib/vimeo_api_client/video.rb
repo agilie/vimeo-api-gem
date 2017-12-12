@@ -16,33 +16,27 @@ module Vimeo
     end
 
     def create_by_pulling(link)
-      request('/me/videos', { body: {
-        type: 'pull',
-        link: link
-      } }, :post)
+      post('/me/videos', type: 'pull', link: link)
     end
 
     def update_by_pulling(link)
-      request("/videos/#{@id}/files", { body: {
-        type: 'pull',
-        link: link
-      } }, :put)
+      put("/videos/#{@id}/files", type: 'pull', link: link)
     end
 
-    def get
-      request("/videos/#{@id}")
+    def show
+      get("/videos/#{@id}")
     end
 
     def update(options = {})
-      request("/videos/#{@id}", { body: options }, :patch)
+      patch("/videos/#{@id}", options)
     end
 
     def update_timeline_events(options)
-      request("/videos/#{@id}/timelineevents", { body: options }, :patch)
+      patch("/videos/#{@id}/timelineevents", options)
     end
 
-    def delete
-      request("/videos/#{@id}", {}, :delete)
+    def destroy
+      delete("/videos/#{@id}")
     end
 
     private

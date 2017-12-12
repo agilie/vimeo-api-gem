@@ -11,11 +11,11 @@ module Vimeo
     end
 
     def index
-      request("/videos/#{@video_id}/texttracks")
+      get("/videos/#{@video_id}/texttracks")
     end
 
-    def get
-      request("/videos/#{@video_id}/texttracks/#{@id}")
+    def show
+      get("/videos/#{@video_id}/texttracks/#{@id}")
     end
 
     # type
@@ -24,7 +24,7 @@ module Vimeo
     # active
     # file
     def create(options)
-      response = request("/videos/#{@video_id}/texttracks", { body: options }, :post)
+      response = post("/videos/#{@video_id}/texttracks", options)
       upload_file(response.link, options[:file]) if options[:file]
       response
     end
@@ -34,11 +34,11 @@ module Vimeo
     end
 
     def update(options)
-      request("/videos/#{@video_id}/texttracks/#{@id}", { body: options }, :patch)
+      patch("/videos/#{@video_id}/texttracks/#{@id}", options)
     end
 
-    def delete
-      request("/videos/#{@video_id}/texttracks/#{@id}", {}, :delete)
+    def destroy
+      delete("/videos/#{@video_id}/texttracks/#{@id}")
     end
 
   end

@@ -11,8 +11,8 @@ module Vimeo
       @id = id.nil? ? '/me' : "/users/#{id}"
     end
 
-    def get
-      request(id)
+    def show
+      get(id)
     end
 
   end

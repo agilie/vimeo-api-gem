@@ -22,9 +22,9 @@ module Vimeo
     }.freeze
 
     def request(url, options = {}, method = :get)
-      options.merge!({headers: {
+      options.merge!({ headers: {
         'Authorization' => "Bearer #{Vimeo.token}"
-      }})
+      } })
 
       request_url = url[0] == '/' ? "#{BASE_API_URI}#{url}" : url
 
@@ -34,6 +34,26 @@ module Vimeo
       else
         parse_failed response
       end
+    end
+
+    def get(url, options = {})
+      request(url, options)
+    end
+
+    def post(url, options = {})
+      request(url, { body: options }, :post)
+    end
+
+    def delete(url, options = {})
+      request(url, { body: options }, :delete)
+    end
+
+    def put(url, options = {})
+      request(url, { body: options }, :put)
+    end
+
+    def patch(url, options = {})
+      request(url, { body: options }, :patch)
     end
 
     private
