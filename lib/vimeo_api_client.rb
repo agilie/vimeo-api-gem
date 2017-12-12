@@ -9,6 +9,7 @@ require 'vimeo_api_client/utils'
 require 'vimeo_api_client/user'
 require 'vimeo_api_client/video'
 require 'vimeo_api_client/texttrack'
+require 'vimeo_api_client/watchlater_video'
 
 module Vimeo
   extend Configuration
