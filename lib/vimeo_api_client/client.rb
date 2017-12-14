@@ -45,7 +45,11 @@ module Vimeo
     end
 
     def parse_failed(response)
-      error = ERROR_CODES[response.code].new(response)
+      p 'ERROR HAPPENED'
+      p response.code
+      p response.inspect
+      p '----------------------------'
+      error = (ERROR_CODES[response.code] || BadRequest).new(response)
       raise error, error.message
     end
 
