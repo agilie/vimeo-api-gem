@@ -9,7 +9,7 @@ require 'vimeo_api_client/utils'
 require 'vimeo_api_client/user'
 require 'vimeo_api_client/video'
 require 'vimeo_api_client/texttrack'
-require 'vimeo_api_client/picture'
+require 'vimeo_api_client/thumbnail'
 require 'vimeo_api_client/language'
 require 'vimeo_api_client/watchlater_video'
 

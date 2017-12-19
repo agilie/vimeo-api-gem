@@ -1,7 +1,7 @@
 require 'vimeo_api_client/client'
 
 module Vimeo
-  class Picture
+  class Thumbnail
 
     include Client
 

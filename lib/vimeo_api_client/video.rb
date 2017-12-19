@@ -8,7 +8,7 @@ module Vimeo
     include HasChildren
 
     has_many :text_tracks
-    has_many :pictures
+    has_many :thumbnails
 
     attr_reader :id
 
