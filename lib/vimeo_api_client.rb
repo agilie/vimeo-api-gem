@@ -9,12 +9,14 @@ require 'vimeo_api_client/utils'
 require 'vimeo_api_client/user'
 require 'vimeo_api_client/video'
 require 'vimeo_api_client/texttrack'
+require 'vimeo_api_client/picture'
+require 'vimeo_api_client/language'
 require 'vimeo_api_client/watchlater_video'
 
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user video text_track).freeze
+  RESOURCES = %w(user video text_track language).freeze
 
   class << self
 
