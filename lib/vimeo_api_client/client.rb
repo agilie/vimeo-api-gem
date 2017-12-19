@@ -15,6 +15,7 @@ module Vimeo
       401 => Unauthorized,
       403 => NotAllowed,
       404 => NotFound,
+      429 => TooManyRequests,
       500 => InternalServerError,
       502 => BadGateway,
       503 => ServiceUnavailable,
