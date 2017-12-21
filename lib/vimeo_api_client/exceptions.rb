@@ -27,6 +27,10 @@ module Vimeo
   class NotFound < Error
   end
 
+  # Raised when Vimeo returns the HTTP status code 429
+  class TooManyRequests < Error
+  end
+
   # Raised when Vimeo returns the HTTP status code 500
   class InternalServerError < Error
   end
