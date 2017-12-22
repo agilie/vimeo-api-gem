@@ -5,27 +5,31 @@ module Vimeo
 
     include Client
 
-    attr_reader :id
+    attr_reader :id, :parents
 
-    def initialize(id = nil, user_id)
+    def initialize(id = nil, parents = {})
       @id = id
-      @user_id = user_id
+      @parents = parents
     end
 
     def add
-      put("#{@user_id}/watchlater/#{@id}")
+      put("#{user_id}/watchlater/#{@id}")
     end
 
     def check
-      get("#{@user_id}/watchlater/#{@id}")
+      get("#{user_id}/watchlater/#{@id}")
     end
 
     def remove
-      delete("#{@user_id}/watchlater/#{@id}")
+      delete("#{user_id}/watchlater/#{@id}")
     end
 
     def index
-      get("#{@user_id}/watchlater")
+      get("#{user_id}/watchlater")
+    end
+
+    def user_id
+      parents[:user_id]
     end
 
   end
