@@ -5,17 +5,19 @@ module Vimeo
 
     include Client
 
-    def initialize(id = nil, video_id)
+    attr_reader :id, :parents
+
+    def initialize(id = nil, parents = {})
       @id = id
-      @video_id = video_id
+      @parents = parents
     end
 
     def index
-      get("/videos/#{@video_id}/texttracks")
+      get("/videos/#{video_id}/texttracks")
     end
 
     def show
-      get("/videos/#{@video_id}/texttracks/#{@id}")
+      get("/videos/#{video_id}/texttracks/#{@id}")
     end
 
     # type
@@ -24,7 +26,7 @@ module Vimeo
     # active
     # file
     def create(options)
-      response = post("/videos/#{@video_id}/texttracks", options)
+      response = post("/videos/#{video_id}/texttracks", options)
       upload_file(response.link, options[:file]) if options[:file]
       response
     end
@@ -34,11 +36,15 @@ module Vimeo
     end
 
     def update(options)
-      patch("/videos/#{@video_id}/texttracks/#{@id}", options)
+      patch("/videos/#{video_id}/texttracks/#{@id}", options)
     end
 
     def destroy
-      delete("/videos/#{@video_id}/texttracks/#{@id}")
+      delete("/videos/#{video_id}/texttracks/#{@id}")
+    end
+
+    def video_id
+      parents[:video_id]
     end
 
   end

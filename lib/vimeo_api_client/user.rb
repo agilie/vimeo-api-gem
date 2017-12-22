@@ -11,7 +11,7 @@ module Vimeo
 
     attr_reader :id
 
-    def initialize(id = nil)
+    def initialize(id = nil, parents = {})
       @id = id.nil? ? '/me' : "/users/#{id}"
     end
 

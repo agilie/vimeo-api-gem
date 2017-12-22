@@ -10,10 +10,11 @@ module Vimeo
     has_many :text_tracks
     has_many :thumbnails
 
-    attr_reader :id
+    attr_reader :id, :parents
 
-    def initialize(uri = nil)
+    def initialize(uri = nil, parents = {})
       @id = strip_to_id(uri)
+      @parents = parents
     end
 
     def create_by_pulling(link)
