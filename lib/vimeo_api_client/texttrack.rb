@@ -1,16 +1,5 @@
-require 'vimeo_api_client/client'
-
 module Vimeo
-  class TextTrack
-
-    include Client
-
-    attr_reader :id, :parents
-
-    def initialize(id = nil, parents = {})
-      @id = id
-      @parents = parents
-    end
+  class TextTrack < Resource
 
     def index
       get("/videos/#{video_id}/texttracks")
@@ -41,10 +30,6 @@ module Vimeo
 
     def destroy
       delete("/videos/#{video_id}/texttracks/#{@id}")
-    end
-
-    def video_id
-      parents[:video_id]
     end
 
   end

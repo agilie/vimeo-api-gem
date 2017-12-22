@@ -1,16 +1,5 @@
-require 'vimeo_api_client/client'
-
 module Vimeo
-  class WatchlaterVideo
-
-    include Client
-
-    attr_reader :id, :parents
-
-    def initialize(id = nil, parents = {})
-      @id = id
-      @parents = parents
-    end
+  class WatchlaterVideo < Resource
 
     def add
       put("#{user_id}/watchlater/#{@id}")
@@ -26,10 +15,6 @@ module Vimeo
 
     def index
       get("#{user_id}/watchlater")
-    end
-
-    def user_id
-      parents[:user_id]
     end
 
   end

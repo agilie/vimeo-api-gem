@@ -1,16 +1,13 @@
-require 'vimeo_api_client/client'
 require 'vimeo_api_client/has_children'
 
 module Vimeo
-  class Video
+  class Video < Resource
 
     include Client
     include HasChildren
 
     has_many :text_tracks
     has_many :thumbnails
-
-    attr_reader :id, :parents
 
     def initialize(uri = nil, parents = {})
       @id = strip_to_id(uri)

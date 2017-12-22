@@ -1,16 +1,5 @@
-require 'vimeo_api_client/client'
-
 module Vimeo
-  class Thumbnail
-
-    include Client
-
-    attr_reader :id, :parents
-
-    def initialize(id = nil, parents = {})
-      @id = id
-      @parents = parents
-    end
+  class Thumbnail < Resource
 
     def index
       get("/videos/#{video_id}/pictures")
@@ -36,10 +25,6 @@ module Vimeo
 
     def destroy
       delete("/videos/#{video_id}/pictures/#{@id}")
-    end
-
-    def video_id
-      parents[:video_id]
     end
 
   end

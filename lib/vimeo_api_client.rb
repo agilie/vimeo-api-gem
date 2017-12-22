@@ -6,6 +6,7 @@ require 'vimeo_api_client/configuration'
 require 'vimeo_api_client/utils'
 
 # Resources
+require 'vimeo_api_client/resource'
 require 'vimeo_api_client/user'
 require 'vimeo_api_client/video'
 require 'vimeo_api_client/texttrack'

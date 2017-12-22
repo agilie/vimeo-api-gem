@@ -1,18 +1,9 @@
-require 'vimeo_api_client/client'
 require 'vimeo_api_client/has_children'
 
 module Vimeo
-  class Album
+  class Album < Resource
 
-    include Client
     include HasChildren
-
-    attr_reader :id, :parents
-
-    def initialize(id = nil, parents = {})
-      @id = id
-      @parents = parents
-    end
 
     def create(options)
       post("#{user_id}/albums", options)
@@ -33,10 +24,6 @@ module Vimeo
     def destroy
       delete("#{user_id}/albums/#{id}")
     end
-
-    def user_id
-      parents[:user_id]
-    end
-
+    
   end
 end

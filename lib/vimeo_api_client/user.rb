@@ -1,16 +1,12 @@
-require 'vimeo_api_client/client'
 require 'vimeo_api_client/has_children'
 
 module Vimeo
-  class User
+  class User < Resource
 
-    include Client
     include HasChildren
 
     has_many :watchlater_videos
     has_many :albums
-
-    attr_reader :id, :parents
 
     def initialize(id = nil, parents = {})
       @id = id.nil? ? '/me' : "/users/#{id}"
