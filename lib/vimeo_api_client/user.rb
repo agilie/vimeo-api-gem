@@ -8,11 +8,13 @@ module Vimeo
     include HasChildren
 
     has_many :watchlater_videos
+    has_many :albums
 
-    attr_reader :id
+    attr_reader :id, :parents
 
     def initialize(id = nil, parents = {})
       @id = id.nil? ? '/me' : "/users/#{id}"
+      @parents = parents
     end
 
     def show

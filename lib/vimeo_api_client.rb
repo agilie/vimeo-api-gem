@@ -12,6 +12,7 @@ require 'vimeo_api_client/texttrack'
 require 'vimeo_api_client/thumbnail'
 require 'vimeo_api_client/language'
 require 'vimeo_api_client/watchlater_video'
+require 'vimeo_api_client/album'
 
 module Vimeo
   extend Configuration
