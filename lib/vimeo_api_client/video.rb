@@ -3,16 +3,10 @@ require 'vimeo_api_client/has_children'
 module Vimeo
   class Video < Resource
 
-    include Client
     include HasChildren
 
     has_many :text_tracks
     has_many :thumbnails
-
-    # def initialize(uri = nil, parents = {})
-    #   @id = strip_to_id(uri)
-    #   @parents = parents
-    # end
 
     def show
       get("/videos/#{@id}")

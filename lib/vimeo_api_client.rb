@@ -14,6 +14,7 @@ require 'vimeo_api_client/thumbnail'
 require 'vimeo_api_client/language'
 require 'vimeo_api_client/watchlater_video'
 require 'vimeo_api_client/album'
+require 'vimeo_api_client/portfolio'
 
 module Vimeo
   extend Configuration

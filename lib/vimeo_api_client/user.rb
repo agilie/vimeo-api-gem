@@ -7,6 +7,7 @@ module Vimeo
 
     has_many :watchlater_videos
     has_many :albums
+    has_many :portfolios
 
     def show
       get(id)
