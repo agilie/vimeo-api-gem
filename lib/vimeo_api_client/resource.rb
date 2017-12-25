@@ -26,7 +26,7 @@ module Vimeo
     protected
 
     def get_id(uri)
-      uri[/^\d+$/] || self.class.get_resource_id(uri)
+      uri.to_s[/^\d+$/] || self.class.get_resource_id(uri)
     end
 
     def get_parents(uri)

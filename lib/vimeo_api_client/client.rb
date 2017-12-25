@@ -23,8 +23,6 @@ module Vimeo
     }.freeze
 
     def request(url, options = {}, method = :get)
-      p "Request Url: #{url}"
-
       options.merge!({ headers: {
         'Authorization' => "Bearer #{Vimeo.token}"
       } })
