@@ -5,6 +5,9 @@ require 'vimeo_api_client/version'
 require 'vimeo_api_client/configuration'
 require 'vimeo_api_client/utils'
 
+# Logger
+require 'vimeo_api_client/logger'
+
 # Resources
 require 'vimeo_api_client/resource'
 require 'vimeo_api_client/user'
