@@ -9,18 +9,10 @@ module Vimeo
     has_many :text_tracks
     has_many :thumbnails
 
-    def initialize(uri = nil, parents = {})
-      @id = strip_to_id(uri)
-      @parents = parents
-    end
-
-    def create_by_pulling(link)
-      post('/me/videos', type: 'pull', link: link)
-    end
-
-    def update_by_pulling(link)
-      put("/videos/#{@id}/files", type: 'pull', link: link)
-    end
+    # def initialize(uri = nil, parents = {})
+    #   @id = strip_to_id(uri)
+    #   @parents = parents
+    # end
 
     def show
       get("/videos/#{@id}")
@@ -38,10 +30,24 @@ module Vimeo
       delete("/videos/#{@id}")
     end
 
-    private
+    def create_by_pulling(link)
+      post('/me/videos', type: 'pull', link: link)
+    end
 
-    def strip_to_id(uri)
-      uri.to_s[/\d+/] if uri
+    def update_by_pulling(link)
+      put("/videos/#{@id}/files", type: 'pull', link: link)
+    end
+
+    def generate_upload_ticket(redirect_url)
+      post('/me/videos', type: 'post', redirect_url: redirect_url)
+    end
+
+    def create_as_resumable
+      post('/me/videos', type: 'streaming')
+    end
+
+    def upload_as_resumable(upload_link, file)
+      put(upload_link, file)
     end
 
   end

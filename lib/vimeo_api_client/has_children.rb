@@ -20,12 +20,6 @@ module Vimeo
       base.extend(HasChildren)
     end
 
-    private
-
-    def class_name(klass)
-      klass.to_s.split('::').last.downcase
-    end
-
   end
 end
 
