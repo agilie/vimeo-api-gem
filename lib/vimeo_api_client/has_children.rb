@@ -7,11 +7,11 @@ module Vimeo
 
     def has_many(resource_plural)
 
-      define_method "#{resource_plural}" do |id = nil, parents = {}|
+      define_method "#{resource_plural}" do |uri = nil|
         klass = Object.const_get "Vimeo::#{snake_to_camel(singularize(resource_plural))}"
-        class_name = class_name(self.class)
+        class_name = self.class.class_name
         parents = self.parents.merge("#{class_name}_id".to_sym => self.id)
-        klass.new(id, parents)
+        klass.new(uri, parents)
       end
 
     end

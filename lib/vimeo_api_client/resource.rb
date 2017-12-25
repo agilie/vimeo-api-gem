@@ -10,7 +10,9 @@ module Vimeo
     attr_reader :id, :parents
 
     def initialize(uri = nil, parents = {})
-      parse_url(uri)
+      uri = uri.to_s
+      @id = get_id(uri)
+      @parents = get_parents(uri)
       @parents.merge!(parents)
     end
 
@@ -25,34 +27,37 @@ module Vimeo
     protected
 
     def self.descendants
-      ObjectSpace.each_object(Class).select { |klass| klass < self }
+      ObjectSpace.each_object(Class).select {|klass| klass < self}
     end
 
-    # TODO: This logic should be less complicated
-    # Maybe move this to a class methods
-    def parse_url(uri)
-      return if uri.nil?
-      @id = uri[/^\d+$/]
-      @id = get_resource_id(uri, class_name(self.class)) unless @id
+    def get_id(uri)
+      uri[/^\d+$/] || self.class.get_resource_id(uri)
+    end
 
-      @parents = {}
-      (%w[video user] - [class_name(self.class)]).each do |resource|
-        resource_id = get_resource_id(uri, resource)
+    def get_parents(uri)
+      parents = {}
+      (Vimeo::Resource.descendants - [self.class]).each do |klass|
+        klass_name = klass.class_name
+        resource_id = klass.get_resource_id(uri)
         next if resource_id.nil? || resource_id.empty?
-
-        key = "#{resource}_id".to_sym
-        @parents[key] = resource_id
+        key = "#{klass_name}_id".to_sym
+        parents[key] = resource_id
       end
+      parents
     end
 
-    def get_resource_id(uri, klass_name)
-      if klass_name == 'user'
-        id = uri[/users\/\d+/]
-        return id ? "/users/#{id}" : '/me'
-      end
-      regex = Regexp.new("#{pluralize(klass_name)}/(\\d+)")
+    def self.get_resource_id(uri)
+      regex = Regexp.new("#{resource_name}/(\\d+)")
       match = uri.match(regex)
       match[1] if match
+    end
+
+    def self.class_name
+      name.to_s.split('::').last.downcase
+    end
+
+    def self.resource_name
+      "#{class_name}s"
     end
 
   end

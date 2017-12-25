@@ -8,17 +8,18 @@ module Vimeo
     has_many :watchlater_videos
     has_many :albums
 
-    def initialize(id = nil, parents = {})
-      @id = id.nil? ? '/me' : "/users/#{id}"
-      @parents = parents
-    end
-
     def show
       get(id)
     end
 
     def add_team_member(email, options = {})
       put("#{@id}/teammembers/#{email}", options)
+    end
+
+    private
+
+    def get_id(uri)
+      @id = uri.nil? ? '/me' : super
     end
 
   end

@@ -18,7 +18,7 @@ require 'vimeo_api_client/album'
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user video text_track language).freeze
+  RESOURCES = %w(user video text_track language album).freeze
 
   class << self
 
