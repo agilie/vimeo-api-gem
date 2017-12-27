@@ -60,14 +60,19 @@ module Vimeo
     private
 
     def parse_success(response)
-      return unless response.body
-      response_hash = JSON.parse(response.body)
+      result = response_exists?(response) ? response.body : '{}'
+      response_hash = JSON.parse(result)
+      response_hash[:headers] = response.headers
       ::Hashie::Mash.new(response_hash)
     end
 
     def parse_failed(response)
       error = ERROR_CODES[response.code].new(response)
       raise error, error.message
+    end
+
+    def response_exists?(response)
+      response.body && !response.body.empty?
     end
 
   end

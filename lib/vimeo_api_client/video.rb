@@ -44,13 +44,47 @@ module Vimeo
       post('/me/videos', type: 'streaming')
     end
 
-    def upload_by_streaming(upload_link, file)
-      put(upload_link, file)
+    def upload_by_streaming(file_url, options)
+      file = File.open(file_url, 'rb')
+      file_size = file.size
+      offset = options[:offset].to_i
+      file.read(offset)
+      headers = {
+        'Content-Length' => file_size.to_s,
+        # 'Content-Type' => 'determine or get from options',
+      }
+      headers['Content-Range'] = "bytes #{offset + 1}-#{file_size}/#{file_size}" unless offset.zero?
+      HTTParty.put(options[:upload_link_secure], body: file.read, headers: headers)
     end
 
-    # TODO: This should be implemented in nearest future
-    def end_streaming(options)
-      delete(options)
+    def verify_upload_by_streaming(options)
+      headers = {
+        'Content-Length' => '0',
+        'Content-Range': 'bytes */*'
+      }
+      HTTParty.put(options[:upload_link_secure], headers: headers)
+    end
+
+    def finish_upload_by_streaming(options)
+      delete(options[:complete_uri])
+    end
+
+    def stream(file_url, options = {})
+      tries = options[:tries] || 3
+      file_size = File.size?(file_url)
+      uploaded_size = 0
+      ticket = create_by_streaming
+
+      loop do
+        upload_by_streaming(file_url, ticket.merge(offset: uploaded_size))
+        resp = verify_upload_by_streaming(ticket)
+        uploaded_size = resp.headers['range'].split('-')[1].to_i
+        tries -= 1
+        break if file_size >= uploaded_size || tries <= 0
+      end
+
+      response = finish_upload_by_streaming(ticket)
+      ::Hashie::Mash.new(video_url: response.headers['location'])
     end
 
   end
