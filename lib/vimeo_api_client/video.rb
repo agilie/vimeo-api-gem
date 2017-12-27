@@ -40,12 +40,17 @@ module Vimeo
       put("/videos/#{id}/files", type: 'pull', redirect_url: redirect_url)
     end
 
-    def create_as_resumable
+    def create_by_streaming
       post('/me/videos', type: 'streaming')
     end
 
-    def upload_as_resumable(upload_link, file)
+    def upload_by_streaming(upload_link, file)
       put(upload_link, file)
+    end
+
+    # TODO: This should be implemented in nearest future
+    def end_streaming(options)
+      delete(options)
     end
 
   end
