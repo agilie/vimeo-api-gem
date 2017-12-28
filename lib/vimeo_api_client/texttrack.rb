@@ -21,7 +21,7 @@ module Vimeo
     end
 
     def upload_file(upload_link, file)
-      HTTParty.put(upload_link, body: file)
+      put(upload_link, file)
     end
 
     def update(options)

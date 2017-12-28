@@ -54,7 +54,7 @@ module Vimeo
         # 'Content-Type' => 'determine or get from options',
       }
       headers['Content-Range'] = "bytes #{offset + 1}-#{file_size}/#{file_size}" unless offset.zero?
-      HTTParty.put(options[:upload_link_secure], body: file.read, headers: headers)
+      put(options[:upload_link_secure], file.read, headers)
     end
 
     def verify_upload_by_streaming(options)
@@ -62,7 +62,7 @@ module Vimeo
         'Content-Length' => '0',
         'Content-Range': 'bytes */*'
       }
-      HTTParty.put(options[:upload_link_secure], headers: headers)
+      put(options[:upload_link_secure], {}, headers)
     end
 
     def finish_upload_by_streaming(options)

@@ -23,38 +23,39 @@ module Vimeo
     }.freeze
 
     def request(url, options = {}, method = :get)
-      options.merge!({ headers: {
-        'Authorization' => "Bearer #{Vimeo.token}"
-      } })
-
-      request_url = url[0] == '/' ? "#{BASE_API_URI}#{url}" : url
+      request_url = if url[0] == '/'
+                      options[:headers].merge!('Authorization' => "Bearer #{Vimeo.token}")
+                      "#{BASE_API_URI}#{url}"
+                    else
+                      url
+                    end
 
       response = HTTParty.send(method, request_url, options)
-      if response.success?
+      if response.success? || response.code.to_i == 308
         parse_success response
       else
         parse_failed response
       end
     end
 
-    def get(url, options = {})
-      request(url, options)
+    def get(url, options = {}, headers = {})
+      request(url, query: options, headers: headers)
     end
 
-    def post(url, options = {})
-      request(url, { body: options }, :post)
+    def post(url, options = {}, headers = {})
+      request(url, { body: options, headers: headers }, :post)
     end
 
-    def delete(url, options = {})
-      request(url, { body: options }, :delete)
+    def delete(url, options = {}, headers = {})
+      request(url, { body: options, headers: headers }, :delete)
     end
 
-    def put(url, options = {})
-      request(url, { body: options }, :put)
+    def put(url, options = {}, headers = {})
+      request(url, { body: options, headers: headers }, :put)
     end
 
-    def patch(url, options = {})
-      request(url, { body: options }, :patch)
+    def patch(url, options = {}, headers = {})
+      request(url, { body: options, headers: headers }, :patch)
     end
 
     private
