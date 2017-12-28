@@ -22,7 +22,7 @@ require 'vimeo_api_client/portfolio'
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user video text_track language album).freeze
+  RESOURCES = %w(user video text_track language album resource).freeze
 
   class << self
 
