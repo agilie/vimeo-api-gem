@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vimeo_api_client (0.1.10)
+    vimeo_api_client (0.1.11)
       hashie
       httparty
 
