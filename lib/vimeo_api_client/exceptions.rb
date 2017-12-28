@@ -47,4 +47,8 @@ module Vimeo
   class GatewayTimeout < Error
   end
 
+  # Raised when Vimeo returns the HTTP status code which is not in the list
+  class UnknownError < Error
+  end
+
 end
