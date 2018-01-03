@@ -1,9 +1,12 @@
 <p align="center">
-  <img width="400" style="vertical-align: middle" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/title.png" alt="Vimeo API Client">
-  <img width="100" style="vertical-align: middle" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/small_logo.png" alt="Small Logo">
+  <img width="600" style="vertical-align: middle" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/title.png" alt="Vimeo API Client">
 </p>
 
 # Vimeo API Client
+
+<p align="center"> 
+    <img width="600" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/main_logo.png" alt="Example">
+</p>
 
 A Ruby wrapper for the Vimeo API. It utilizes v3 Vimeo API version.
 
