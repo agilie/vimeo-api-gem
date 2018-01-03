@@ -2,10 +2,6 @@
   <img width="600" style="vertical-align: middle" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/title.png" alt="Vimeo API Client">
 </p>
 
-<p align="center"> 
-    <img width="600" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/main_logo.png" alt="Example">
-</p>
-
 # Vimeo API Client
 
 A Ruby wrapper for the Vimeo API. It utilizes v3 Vimeo API version.
@@ -25,6 +21,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install vimeo_api_client
+    
+<p align="center"> 
+    <img width="600" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/main_logo.png" alt="Example">
+</p>
 
 ## Usage
 
