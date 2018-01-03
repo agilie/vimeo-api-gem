@@ -1,6 +1,6 @@
 <p align="center">
-  <img width="600" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/title.png" alt="Vimeo API Client">
-  <img width="100" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/small_logo.png" alt="Small Logo">
+  <img width="400" style="vertical-align: middle" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/title.png" alt="Vimeo API Client">
+  <img width="100" style="vertical-align: middle" src="https://raw.githubusercontent.com/wiki/agilie/vimeo-api-gem/assets/small_logo.png" alt="Small Logo">
 </p>
 
 # Vimeo API Client
