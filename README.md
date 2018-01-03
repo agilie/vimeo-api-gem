@@ -1,4 +1,7 @@
-temporary line
+<p align="center">
+  <img width="600" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/title.png" alt="Vimeo API Client">
+  <img width="100" src="https://github.com/agilie/vimeo-api-gem/wiki/assets/small_logo.png" alt="Logos">
+</p>
 
 # Vimeo API Client
 
