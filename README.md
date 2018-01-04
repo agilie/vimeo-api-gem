@@ -13,7 +13,7 @@ and [official Vimeo documentation](https://developer.vimeo.com/)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'vimeo_api_client', git: 'https://github.com/agilie/vimeo-api-gem', branch: :master
+gem 'vimeo_api_client', git: 'https://github.com/agilie/vimeo-api-gem'
 ```
 
 And then execute:
