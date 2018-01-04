@@ -18,11 +18,12 @@ require 'vimeo_api_client/language'
 require 'vimeo_api_client/watchlater_video'
 require 'vimeo_api_client/album'
 require 'vimeo_api_client/portfolio'
+require 'vimeo_api_client/category'
 
 module Vimeo
   extend Configuration
 
-  RESOURCES = %w(user video text_track language album resource).freeze
+  RESOURCES = %w(user video text_track language album resource category).freeze
 
   class << self
 
