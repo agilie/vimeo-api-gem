@@ -1,12 +1,12 @@
 module Vimeo
   class TextTrack < Resource
 
-    def index
-      get("/videos/#{video_id}/texttracks")
+    def index(options = {})
+      get("/videos/#{video_id}/texttracks", options)
     end
 
-    def show
-      get("/videos/#{video_id}/texttracks/#{@id}")
+    def show(options = {})
+      get("/videos/#{video_id}/texttracks/#{@id}", options)
     end
 
     # type

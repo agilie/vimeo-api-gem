@@ -1,12 +1,12 @@
 module Vimeo
   class Thumbnail < Resource
 
-    def index
-      get("/videos/#{video_id}/pictures")
+    def index(options = {})
+      get("/videos/#{video_id}/pictures", options)
     end
 
-    def show
-      get("/videos/#{video_id}/pictures/#{@id}")
+    def show(options = {})
+      get("/videos/#{video_id}/pictures/#{@id}", options)
     end
 
     def create(options)

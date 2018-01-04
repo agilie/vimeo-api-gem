@@ -8,8 +8,8 @@ module Vimeo
     has_many :text_tracks
     has_many :thumbnails
 
-    def show
-      get("/videos/#{id}")
+    def show(options = {})
+      get("/videos/#{id}", options)
     end
 
     def update(options = {})

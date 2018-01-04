@@ -9,12 +9,12 @@ module Vimeo
       post("#{user_id}/albums", options)
     end
 
-    def index
-      get("#{user_id}/albums")
+    def index(options = {})
+      get("#{user_id}/albums", options)
     end
 
-    def show
-      get("#{user_id}/albums/#{id}")
+    def show(options = {})
+      get("#{user_id}/albums/#{id}", options)
     end
 
     def update(options)
@@ -35,12 +35,12 @@ module Vimeo
       put("#{user_id}/albums/#{id}/videos", videos: videos)
     end
 
-    def get_videos(options)
+    def get_videos(options = {})
       get("#{user_id}/albums/#{id}/videos", options)
     end
 
-    def get_video(video_id)
-      get("#{user_id}/albums/#{id}/videos/#{video_id}")
+    def get_video(video_id, options = {})
+      get("#{user_id}/albums/#{id}/videos/#{video_id}", options)
     end
 
     def delete_video(video_id)
