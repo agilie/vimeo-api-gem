@@ -20,8 +20,9 @@ module Vimeo
       response
     end
 
-    def upload_file(upload_link, file)
-      put(upload_link, file)
+    def upload_file(upload_link, file_url)
+      file_data = File.read(file_url)
+      put(upload_link, file_data)
     end
 
     def update(options)
